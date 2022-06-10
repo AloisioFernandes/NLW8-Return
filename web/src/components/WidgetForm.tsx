@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { CloseButton } from "./CloseButton";
 
 import bugImageUrl from '../assets/bug.svg'
@@ -28,7 +30,11 @@ const feedbackTypes = {
   }
 }
 
+type FeedbackType = keyof typeof feedbackTypes
+
 export function WidgetForm() {
+  const [feedbackType, setFeedBackType] = useState<FeedbackType | null>(null)
+  
   return (
     <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
       <header>
@@ -41,7 +47,9 @@ export function WidgetForm() {
         {Object.entries(feedbackTypes).map(([key, value]) => {
           return (
             <button
+              key={key}
               className="bg-zinc-800 rounded-lg py-5 w-24 flex-1 flex flex-col items-center gap-2 border-2 border-transparent hover:border-brand-500 focus:border-brand-500 focus:outline-none"
+              onClick={() => setFeedBackType(key as FeedbackType)}
               type="button"
             >
               <img src={value.image.source} alt={value.image.alt} />
