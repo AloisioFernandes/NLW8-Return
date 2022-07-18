@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { TouchableOpacity } from "react-native";
 import { ChatTeardropDots } from "phosphor-react-native";
+import BottomSheet from "@gorhom/bottom-sheet";
 
 import { styles } from "./styles";
 
