@@ -35,3 +35,5 @@ export default function App() {
     </View>
   );
 }
+
+// 49:00
