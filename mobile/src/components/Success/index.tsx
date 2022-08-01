@@ -19,7 +19,7 @@ export function Success() {
         Agradecemos o feedback
       </Text>
 
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonTitle}>
           Quero enviar outro
         </Text>
