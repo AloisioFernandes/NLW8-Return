@@ -51,9 +51,11 @@ function Widget() {
               feedbackType ?
               <Form 
                 feedbackType={feedbackType}
+                onFeedbackCanceled={() => {}}
+                onFeedbackSent={() => {}}
               />
               :
-              <Options />
+              <Options onFeedbackTypeChanged={setFeedbackType} />
             }
           </>
         }
