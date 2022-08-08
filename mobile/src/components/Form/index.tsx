@@ -11,6 +11,8 @@ import { feedbackTypes } from '../../utils/feedbackTypes';
 
 import { theme } from '../../theme';
 
+import { api } from '../../libs/api';
+
 import { styles } from './styles';
 
 interface Props {
@@ -22,6 +24,7 @@ interface Props {
 export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props) {
   const [isSendingFeedback, setIsSendingFeedback] = useState(false)
   const [screenshot, setScreenshot] = useState<string | null>(null)
+  const [comment, setComment] = useState("")
 
   const feedbackTypeInfo = feedbackTypes[feedbackType]
 
@@ -46,9 +49,14 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
     setIsSendingFeedback(true)
 
     try{
-
+      await api.post('/feedbacks', {
+        type: feedbackType,
+        screenshot,
+        comment
+      })
     }catch(error){
       console.log(error)
+      setIsSendingFeedback(false)
     }
   }
 
@@ -80,6 +88,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
         placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..."
         placeholderTextColor={theme.colors.text_secondary}
         autoCorrect={false}
+        onChangeText={setComment}
       />
 
       <View style={styles.footer}>
