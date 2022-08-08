@@ -54,6 +54,8 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
         screenshot,
         comment
       })
+
+      onFeedbackSent()
     }catch(error){
       console.log(error)
       setIsSendingFeedback(false)
